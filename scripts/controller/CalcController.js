@@ -1,9 +1,9 @@
 class CalcController {
   constructor() {
-    // this._displayCalc = '0';
+    this._operation = [];
     this._toLocale = 'pt-BR'
     this._currentDate;
-    // this._displayCalcEl = document.querySelector('#display');
+    this._displayCalcEl = document.querySelector('#display');
     this._dateEl = document.querySelector('#data')
     this._timeEl =  document.querySelector('#hora')
 
@@ -31,12 +31,78 @@ class CalcController {
     });
   }
 
+  clearAll(){
+    this._operation = [];
+  }
+
+  clearEntry(){
+    this._operation.pop();
+  }
+  setError() {
+    this.displayCalc = 'Error'
+  }
+
+  addOperator(value) {
+    this._operation.push(value)
+    console.log(this._operation)
+  }
+
   execBtn(value) {
     switch (value) {
       case 'ac': {
-        
+        this.clearAll();
       }
-      break; 
+      break;
+      
+      case 'ce': {
+        this.clearEntry();
+        break;
+      }
+
+      case 'soma': {
+        
+        break;
+      }
+
+      case 'subtracao': {
+
+        break;
+      }
+
+      case 'multiplicacao': {
+
+        break;
+      }
+
+      case 'divisao': {
+
+        break;
+      }
+
+      case 'porcetagem': {
+
+        break;
+      }
+      case 'igual': {
+        this.setEror();
+      }
+
+      case '0':
+      case '1':
+      case '2':
+      case '3':
+      case '4':
+      case '5':
+      case '6':
+      case '7':
+      case '8':
+      case '9':
+        this.addOperator(parseInt(value));
+        break;
+
+
+      default: 
+      break;
     }
   }
 
