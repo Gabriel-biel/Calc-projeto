@@ -11,6 +11,7 @@ class CalcController {
 
     this.initialize();
     this.initButtonEvents();
+    this.initKeyboard();
   }
 
   initialize(){
@@ -25,6 +26,60 @@ class CalcController {
       this.displayTime = this.currentDate.toLocaleTimeString(this._toLocale)
     }, 1000)
     this.setLastNumberToDisplay();
+  }
+
+  initKeyboard() {
+    document.addEventListener('keyup', e=> {
+      switch (e.key) {
+        case 'Escape': {
+          this.clearAll();
+        }
+        break;
+        
+        case 'Backspace': {
+          this.clearEntry();
+          break;
+        }
+  
+        case '+': 
+        case '-':
+        case '*':
+        case '/':
+        case '%':
+        {
+
+          this.addOperation(e.key);
+          break;
+        }
+        case 'Enter':
+        case '=': 
+        {
+          this.calc();
+          break;
+        }
+  
+        case '.': 
+        case ',':
+        {
+          this.addDot();
+          break
+        }
+  
+        case '0':
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+          this.addOperation(parseInt(e.key));
+          break;
+
+      }
+    });
   }
 
   addEventListenerAll(element, events, fn) {
